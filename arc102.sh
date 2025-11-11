@@ -37,8 +37,7 @@ echo "${RED_TEXT}${BOLD_TEXT}🎥 Watch more labs on:  ${RESET_FORMAT}"
 echo "${WHITE_TEXT}${BOLD_TEXT}CloudoArc — YouTube${RESET_FORMAT}"
 }
 
-print_welcome
-print_instructions
+
 
 # Get User Input with Validation
 read -p "${RED_TEXT}${BOLD_TEXT}Bucket Name: ${RESET_FORMAT}" BUCKET_NAME
