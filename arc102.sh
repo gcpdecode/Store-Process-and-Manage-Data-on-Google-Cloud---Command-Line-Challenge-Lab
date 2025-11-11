@@ -22,22 +22,17 @@ echo "${BLUE_TEXT}${BOLD_TEXT}┃           C l o u d o A r c          ┃${RESE
 echo "${BLUE_TEXT}${BOLD_TEXT}┃               Cloud Lab              ┃${RESET_FORMAT}"
 echo "${BLUE_TEXT}${BOLD_TEXT}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET_FORMAT}"
 echo
-
-# Display Setup Instructions
-print_instructions() {
-    echo "${RED_TEXT}${BOLD_TEXT}  Enter the following details for the setup:          ${RESET_FORMAT}"
-    echo
 }
 
 # Display Completion Message
 print_completion() {
-    echo
+  echo
 echo "${GREEN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
 echo "${GREEN_TEXT}${BOLD_TEXT}               LAB COMPLETED SUCCESSFULLY!!!           ${RESET_FORMAT}"
 echo "${GREEN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
 echo
 
-    # ====== GCP DECODE Footer ======
+# ====== GCP DECODE Footer ======
 echo "${RED_TEXT}${BOLD_TEXT}🎥 Watch more labs on:  ${RESET_FORMAT}"
 echo "${WHITE_TEXT}${BOLD_TEXT}CloudoArc — YouTube${RESET_FORMAT}"
 }
@@ -58,7 +53,7 @@ read -p "${RED_TEXT}${BOLD_TEXT}Cloud Function Name: ${RESET_FORMAT}" FUNCTION_N
 echo "${YELLOW_TEXT}${BOLD_TEXT}Function Name: $FUNCTION_NAME ${RESET_FORMAT}"
 echo
 
-read -p "${RED_TEXT}${BOLD_TEXT}Region: ${RESET_FORMAT}" REGION
+read -p "${RED_TEXT}${BOLD_TEXT}Enter Region: ${RESET_FORMAT}" REGION
 echo "${YELLOW_TEXT}${BOLD_TEXT}Region: $REGION ${RESET_FORMAT}"
 echo
 
@@ -68,7 +63,7 @@ export PROJECT_ID=$(gcloud config get-value project)
 
 # Enable Required Services
 echo
-echo "${RED_TEXT}${BOLD_TEXT}Google Cloud Services...${RESET_FORMAT}"
+echo "${RED_TEXT}${BOLD_TEXT}Enabling Google Cloud Services...${RESET_FORMAT}"
 gcloud services enable \
   artifactregistry.googleapis.com \
   cloudfunctions.googleapis.com \
@@ -80,11 +75,11 @@ gcloud services enable \
 
 # Create Infrastructure
 echo
-echo "${RED_TEXT}${BOLD_TEXT}Storage Bucket...${RESET_FORMAT}"
+echo "${RED_TEXT}${BOLD_TEXT}Creating Storage Bucket...${RESET_FORMAT}"
 gsutil mb -l $REGION gs://$BUCKET_NAME
 
 echo
-echo "${RED_TEXT}${BOLD_TEXT}Pub/Sub Topic...${RESET_FORMAT}"
+echo "${RED_TEXT}${BOLD_TEXT}Creating Topic...${RESET_FORMAT}"
 gcloud pubsub topics create $TOPIC_NAME
 
 # Configure Permissions
@@ -217,13 +212,13 @@ while true; do
       break
     fi
   fi
-  echo "${RED_TEXT}${BOLD_TEXT}Deploying...${RESET_FORMAT}"
+  echo "${RED_TEXT}${BOLD_TEXT}Waiting for deployment...${RESET_FORMAT}"
   sleep 10
 done
 
 # Test with sample image
 echo
-echo "${RED_TEXT}${BOLD_TEXT}Testing with Sample Image...${RESET_FORMAT}"
+echo "${RED_TEXT}${BOLD_TEXT}Testing...${RESET_FORMAT}"
 wget -q https://storage.googleapis.com/cloud-training/arc102/wildlife.jpg
 gsutil cp wildlife.jpg gs://$BUCKET_NAME
 
